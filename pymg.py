@@ -62,12 +62,14 @@ def makeReader(f) :
 def artfn(p) : return p.artist
 
 if __name__ == '__main__' :
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.INFO)
 
     allplays = [os.path.join("logs/", n) for n in os.listdir("logs")]
     allplays= [Play(line) for line in itertools.chain(*[makeReader(p) for p in allplays])]
-    allplays = sorted(allplays, artfn)
-
+    allplays.sort(key=artfn)
+    artist_counts = [(a,len(list(i))) for (a,i) in itertools.groupby(allplays,artfn)]
+    artist_counts.sort(key=lambda(l):l[1])
+    print artist_counts
 
 
 #itertools.groupby(allplays,artfn)
