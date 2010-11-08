@@ -72,3 +72,11 @@ if __name__ == '__main__' :
 
 #itertools.groupby(allplays,artfn)
 #[(a,len(list(i))) for (a,i) in itertools.groupby(plays,artfn)]
+
+# allplays= [pymg.Play(line) for line in itertools.chain(*[makeReader(p) for p in allplays])]
+# allplays = sorted(allplays, key=artfn)
+# [(a,len(list(i))) for (a,i) in itertools.groupby(allplays,artfn)]
+
+# second = lambda(l) :l[1]
+
+# acp.sort(key=second)
