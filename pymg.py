@@ -24,7 +24,7 @@ class Play (object) :
             if isinstance(self.track,str) and len(self.track) > 0 : self.track = int(self.track)
         except :
             pass
-        
+
         logging.info("Finished parsing %s", self)
 
     def parsePath(self) :
@@ -32,7 +32,7 @@ class Play (object) :
         path = re.sub('^(Jazz|Folksy|Country)/', '', self.path)
         for (p,fn) in self.dispatch_patterns :
             m = re.match(p,path)
-            if m : 
+            if m :
                 getattr(self,fn)(m)
                 return
         self.parseFilename()
@@ -41,7 +41,7 @@ class Play (object) :
         m = re.match('(?P<artist>[^\-]+) - (?P<album>[^\-]+) - (?P<track>[0-9]{1,2}) - (?P<title>[^\-]+)\.(?P<ext>.{3,4})',
                      os.path.basename(self.path))
         if m : self.__dict__.update(m.groupdict())
-                     
+
 
     def pSoundtrack(self,m) :
         logging.debug("soundtrack: %r",m)
@@ -53,7 +53,7 @@ class Play (object) :
 
 
 
-            
+
 plays= csv.DictReader(open("logs/mpd_plays.log",'r'), fieldnames=['date','path','artist','album','title','track'])
 
 def makeReader(f) :
